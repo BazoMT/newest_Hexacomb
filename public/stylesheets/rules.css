@@ -1,3 +1,4 @@
+/*import font*/
 @font-face {
     font-family: honeycomb;
     src: url(../fonts/Honeycomb-Sharp.otf);
@@ -11,6 +12,15 @@ body {
     background-position: center;
 }
 
+/*title*/
+h1{
+    text-align: center;
+    font-family: honeycomb;
+    font-size: 5em;
+    color: #eec33d;
+}
+
+/*escape link*/
 svg {
     width: 122px;
     height: 104px;
@@ -19,13 +29,16 @@ svg {
     margin-right: 14.6%;
 }
 
-h1{
-    text-align: center;
-    font-family: honeycomb;
-    font-size: 5em;
-    color: #eec33d;
+path {
+    fill: transparent;
 }
 
+text {
+    font-family: honeycomb;
+    font-size: 2.5em;
+}
+
+/*list of rules*/
 ol {
     width: 700px;
     margin: 0 auto;
@@ -36,13 +49,4 @@ ol {
 
 li {
     margin-top: 20px;
-}
-
-path {
-    fill: transparent;
-}
-
-text {
-    font-family: honeycomb;
-    font-size: 2.5em;
 }

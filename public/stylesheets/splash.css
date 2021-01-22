@@ -1,3 +1,4 @@
+/*import font*/
 @font-face {
     font-family: honeycomb;
     src: url(../fonts/Honeycomb-Sharp.otf);
@@ -11,6 +12,7 @@ body {
     background-position: center;
 }
 
+/*logo*/
 #logo {
     width: 300px;
     height: 300px;
@@ -18,6 +20,7 @@ body {
     margin-left: 9.8%;
 }
 
+/*statistics*/
 ul {
     width: 35%;
     height: 45%;
@@ -36,6 +39,7 @@ li {
     padding-top: 30px;
 }
 
+/*play button*/
 .play {
     width: 250px;
     height: 150px;
@@ -52,6 +56,7 @@ text {
     font-size: 3em;
 }
 
+/*rules link*/
 .rules {
     width: 122px;
     height: 104px;

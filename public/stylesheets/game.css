@@ -1,8 +1,101 @@
+/*imported font*/
 @font-face {
     font-family: honeycomb;
     src: url(../fonts/Honeycomb-Sharp.otf);
 }
 
+p {
+    font-family: honeycomb;
+    font-size: 1.75em;
+    text-align: center;
+}
+
+/*whole body is a grid, where elements are placed*/
+body {
+    background-image: url(../images/background_main.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    grid-template-rows: 30% 30% 20% 20%;
+}
+
+/*Hexacomb logo with an easter egg animation when is 
+holded !*spoiler*!: (it changes color beautifully)*/
+#logo {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo:active{
+    animation-name:rotateHue;
+    animation-duration:5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotateHue{
+    from{}
+    to{filter: hue-rotate(360deg)}
+}
+
+/*positioning of the game board with its size*/
+.entire-board{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    padding-left: 50px;
+    padding-top: 50px;
+}
+
+/*this is the background of the grid which
+indicates which sides should the player connect*/
+.game-background{
+    background-color:#eec33d;
+    position: absolute;
+    transform: skew(-30deg);
+    height: 530px;
+    width: 610px;
+    margin-left: 125px; 
+}
+
+.game-background::before{
+    content: "";
+    background-color: black;
+	width: 20px;
+	height: 530px;
+	position: absolute;
+}
+
+.game-background::after{
+    content: "";
+    background-color: black;
+	width: 20px;
+	height: 530px;
+    position: absolute;
+    left: 590px;
+    z-index: 10;
+}
+
+/*this places the hexagonal grid on top of
+everything and puts it in the right place*/
+.game-board-divs{
+    float: left;
+    width: 1000px;
+    position:absolute;
+}
+
+/*these classes create a hexagon out of a rectangle
+and two triangles (one at the bottom and one at the top)*/
 .hex {
     float: left;
     margin-left: 1.5px;
@@ -26,6 +119,8 @@
     border-left: 26px solid transparent;
     border-right: 26px solid transparent;
 }
+
+/*these are alternating hexagon rows creating the board*/
 .hex-row {
     clear: left;
 }
@@ -34,79 +129,31 @@
     margin-left: 26.5px;
 }
 
-body {
-    background-image: url(../images/background_main.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    display: grid;
-    grid-template-columns: 60% 20% 20%;
-    grid-template-rows: 30% 30% 20% 20%;
+/*these are stones which are going to be put on top
+of hexagons when player makes a move*/
+.yellowStone{
+    border-radius:50%;
+    position:absolute;
+    width: 42px;
+    height: 42px;
+    background-color: rgb(211, 211, 30);
+    margin-top:8.3px;
+    margin-left:4.8px;
 }
 
-.res:hover{
-    animation-name:darken;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+.blackStone{
+    border-radius:50%;
+    position:absolute;
+    width: 42px;
+    height: 42px;
+    background-color: rgb(0, 0, 0);
+    margin-top:8.3px;
+    margin-left:4.8px;
 }
 
-.res:not(:hover){
-    animation: brighten 1s;
-}
-
-#logo:active{
-    animation-name:rotateHue;
-    animation-duration:5s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes rotateHue{
-    from{}
-    to{filter: hue-rotate(360deg)}
-}
-
-@keyframes brighten{
-    from{}
-    to{filter: brightness(100%);}
-}
-
-@keyframes darken{
-    from{}
-    to{filter: brightness(80%);}
-}
-
-.res {
-    width: 122px;
-    height: 104px;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    margin-left: 71px;
-}
-
-.res path {
-    fill: transparent;
-}
-
-.res text {
-    font-family: honeycomb;
-    font-size: 2em;
-}
-
-#logo {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    width: 200px;
-    height: 200px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+/*list that specifies whose turn it is by 
+highlighting the color of his stones 
+(changing background images of #yellow/black)*/
 ul {
     grid-column-start: 2;
     grid-column-end: 4;
@@ -132,6 +179,7 @@ li {
     background: url(../images/player_2_wait.png) no-repeat left;
 }
 
+/*displaying the time since the game started*/
 #matchTime {
     grid-column-start: 2;
     grid-column-end: 4;
@@ -139,31 +187,7 @@ li {
     grid-row-end: 4;
 }
 
-p {
-    font-family: honeycomb;
-    font-size: 1.75em;
-    text-align: center;
-}
-
-#board {
-    width: 750px;
-    height: 450px;
-}
-
-#middle p {
-    font-family: honeycomb;
-    font-size: 1.75em;
-}
-
-#bottom p {
-    font-family: honeycomb;
-    font-size: 1.75em;
-}
-
-#bottom p, svg {
-    display: inline;
-}
-
+/*status bar which displays game statuses*/
 #statusBar {
     grid-column-start: 2;
     grid-column-end: 3;
@@ -175,86 +199,48 @@ p {
     background-color: #f9ecc2;
 }
 
-.game-board-divs{
-    float: left;
-    width: 1000px;
-    position:absolute;
-}
-
-.yellowStone{
-    border-radius:50%;
-    position:absolute;
-    width: 42px;
-    height: 42px;
-    background-color: rgb(211, 211, 30);
-    margin-top:8.3px;
-    margin-left:4.8px;
-}
-
-.blackStone{
-    border-radius:50%;
-    position:absolute;
-    width: 42px;
-    height: 42px;
-    background-color: rgb(0, 0, 0);
-    margin-top:8.3px;
-    margin-left:4.8px;
-}
-
-.game-background{
-    background-color:#eec33d;
-    position: absolute;
-    transform: skew(-30.5deg);
-    height: 515px;
-    width: 610px;
-    margin-left: 125px; 
-}
-
-.game-background::before{
-    content: "";
-    background-color: black;
-	width: 25px;
-	height: 515px;
-	position: absolute;
-}
-
-.game-background::after{
-    content: "";
-    background-color: black;
-	width: 25px;
-	height: 515px;
-    position: absolute;
-    left: 585px;
-    z-index: 10;
-}
-
-
-
-.black-bar {
-	background-color: black;
-	transform: skew(-30.5deg);
-	width: 25px;
-	height: 515px;
-	position: absolute;
-}
-
-.black-bar.one{
-    margin-left: 121px;
-}
-
-.black-bar.two{
-    margin-left: 715px;
-}
-
-.entire-board{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
+/*resign button which on hover darkens
+and on not hover brightens*/
+.res {
+    width: 122px;
+    height: 104px;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 4;
     grid-row-end: 5;
-    padding-left: 50px;
-    padding-top: 50px;
+    margin-left: 71px;
 }
 
+.res path {
+    fill: transparent;
+}
+
+.res text {
+    font-family: honeycomb;
+    font-size: 2em;
+}
+.res:hover{
+    animation-name:darken;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.res:not(:hover){
+    animation: brighten 1s;
+}
+
+@keyframes brighten{
+    from{}
+    to{filter: brightness(100%);}
+}
+
+@keyframes darken{
+    from{}
+    to{filter: brightness(80%);}
+}
+
+/*when screensize is too small it reminds the
+user to resize the window*/
 .resize{
     position:fixed;
     z-index: 10;
@@ -264,15 +250,13 @@ p {
     height:auto;
     display:none;
     border: 2px solid chocolate;
-    text-decoration: darkolivegreen;
     color:black;
     font-size:1em;
 }
+
 @media only screen and (max-width: 800px){
-    .resize{
+    .resize {
         display:block;
         content: "<p>This page is best viewed on a wider screen.</p>";
     }
-
-
 }

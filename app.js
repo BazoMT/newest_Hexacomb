@@ -144,7 +144,7 @@ wss.on("connection", function connection(ws) {
         console.log(con.id + " disconnected ...");
         gameStatus.playersOnline--;
 
-        if(waiting){
+        if (waiting) {
           gameStatus.playersWaiting = 0;
           waiting = false;
         }
